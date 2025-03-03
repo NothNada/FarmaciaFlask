@@ -1,0 +1,56 @@
+*{
+    background-color: #000;
+    color: #fff;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.topo{
+    width: 90vw;
+    display: flex;
+    border: #fff solid 2px;
+    border-radius: 10px;
+    padding: 50px;
+    justify-content: center;
+}
+
+.topo button{
+    position: absolute;
+    transform: translateY(-50%);
+    background-color: #000;
+    border: #fff solid 2px;
+    border-radius: 10px;
+    padding: 8px;
+    cursor: pointer;
+    transition: all 1s;
+    font-size: 20px;
+}
+
+.topo button:hover{
+    border: #fff712 solid 5px;
+    border-radius: 100px;
+    padding: 10px;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border: #fff solid 2px;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+form *{
+    border: #ccc solid 1px;
+    border-radius: 20px;
+    font-size: 15px;
+    padding: 10px;
+    text-align: center;
+}

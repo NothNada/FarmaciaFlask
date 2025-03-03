@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static',filename='admin.css') }}">
+    <title>Farmacia</title>
+</head>
+<body>
+    <div class="topo">
+        <button id="login">Home</button>
+    </div>
+
+    <form method="post" enctype="multipart/form-data">
+        <input placeholder="informe a imagem do produto" type="file" name="imagem" required>
+        <textarea name="desc" placeholder="Digite a descrição do produto" rows="10" required></textarea>
+        <input type="number" name="valor" placeholder="Digite o Valor do produto" required>
+        <button type="submit">Enviar</button>
+    </form>
+
+    <script>
+        const btn = document.querySelector("#login");
+        btn.addEventListener('click',()=>{
+            window.location.href = '/'
+        });
+
+
+    </script>
+</body>
+</html>

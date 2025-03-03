@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+    <title>Farmacia - {{usuario}}</title>
+</head>
+<body>
+    <div class="topo">
+        <button id="login">Login</button>
+    </div>
+
+    <div class="prod">
+
+    </div>
+
+    
+    <script>
+        const btn = document.querySelector("#login");
+        const divProd = document.querySelector(".prod");
+        btn.addEventListener('click',()=>{
+            window.location.href = 'login'
+        });
+
+        fetch('/prods/').then(response => response.json())
+        .then(data => {
+            var texto = '';
+            for (let i = 0; i < data.qnts; i++) {
+                texto += "<div class='item'>";
+                texto += "<img src='/static/imgs/" + data.imagem[i] + "'/>";
+                texto += "<p>";
+                texto += data.descricao[i];
+                texto += "</p>";
+                texto += "<h1>R$ ";
+                texto += data.valor[i];
+                texto += "</h1>";
+                texto += "</div>";
+            }
+            divProd.innerHTML = texto;
+        });
+
+
+    </script>
+</body>
+</html>
