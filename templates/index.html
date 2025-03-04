@@ -8,7 +8,10 @@
 </head>
 <body>
     <div class="topo">
-        <button id="login">Login</button>
+        <button id="logout" style="display: none; visibility: hidden;">LogOut</button>
+        <button id="login" style="display: none; visibility: hidden;">Login</button>
+        <button id="edit" style="display: none; visibility: hidden;">Edit</button>
+        <h1>Logado como {{usuario}}</h1>
     </div>
 
     <div class="prod">
@@ -17,11 +20,34 @@
 
     
     <script>
-        const btn = document.querySelector("#login");
         const divProd = document.querySelector(".prod");
-        btn.addEventListener('click',()=>{
-            window.location.href = 'login'
-        });
+
+        if('{{usuario}}' == 'admin'){
+            let btn = document.getElementById("edit");
+            btn.style.visibility = 'visible';
+            btn.style.display = 'flex';
+            btn.addEventListener('click',()=>{
+                window.location.href = 'edit'
+            });
+        }
+
+        if('{{usuario}}'.toLocaleLowerCase() == 'nao logado'){
+            let btn = document.getElementById("login");
+            btn.style.visibility = 'visible';
+            btn.style.display = 'flex';
+            btn.addEventListener('click',()=>{
+                window.location.href = 'login'
+            });
+        }
+
+        if('{{usuario}}'.toLocaleLowerCase() != 'nao logado'){
+            let btn = document.getElementById("logout");
+            btn.style.visibility = 'visible';
+            btn.style.display = 'flex';
+            btn.addEventListener('click',()=>{
+                window.location.href = 'logout'
+            });
+        }
 
         fetch('/prods/').then(response => response.json())
         .then(data => {

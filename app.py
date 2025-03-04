@@ -31,7 +31,9 @@ def init_db():
         verifica.close()
 
         verifica = db.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='produtos';")
+        print("foi2")
         if not verifica.fetchone():
+            print("foi")
             db.execute("CREATE TABLE produtos (id INTEGER PRIMARY KEY AUTOINCREMENT, imagem TEXT, valor INTEGER, desc TEXT)")
         verifica.close()
 init_db()
@@ -57,6 +59,8 @@ def login():
             if dados[1] == usuario and dados[2] == senha:
                 session['username'] = usuario
                 return redirect(url_for('index'))
+            elif dados[1] == usuario:
+                return "Senha Errada!"
         db.execute(f"INSERT INTO usuarios (nome,senha) VALUES ('{usuario}','{senha}')")
         db.commit()
         session['username'] = usuario

@@ -16,13 +16,16 @@ body{
     border-radius: 10px;
     padding: 50px;
     justify-content: center;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
 }
 
 .topo button{
-    position: absolute;
-    transform: translateY(-50%);
+    position: relative;
     background-color: #000;
     border: #fff solid 2px;
+    height: min-content;
     border-radius: 10px;
     padding: 8px;
     cursor: pointer;
@@ -31,9 +34,8 @@ body{
 }
 
 .topo button:hover{
-    border: #fff712 solid 5px;
-    border-radius: 100px;
-    padding: 10px;
+    border: #fff712 solid 2px;
+    border-radius: 20px;
 }
 
 .prod{
@@ -44,18 +46,26 @@ body{
     align-items: center;
     justify-content: center;
     margin-top: 50px;
+    gap: 100px;
 }
 
 .item{
     display: flex;
     width: max-content;
-    height: min-content;
+    height: auto;
     gap: 20px;
     align-items: center;
 }
 
+.item p{
+    width: 200px;
+    height: auto;
+    text-align: center;
+    font-size: 20px;
+}
+
 .item img{
-    height: 50px;
+    width: 200px;
 }
 
 .form{
