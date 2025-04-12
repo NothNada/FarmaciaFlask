@@ -31,9 +31,8 @@ def init_db():
         verifica.close()
 
         verifica = db.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='produtos';")
-        print("foi2")
+
         if not verifica.fetchone():
-            print("foi")
             db.execute("CREATE TABLE produtos (id INTEGER PRIMARY KEY AUTOINCREMENT, imagem TEXT, valor INTEGER, desc TEXT)")
         verifica.close()
 init_db()
@@ -41,6 +40,8 @@ init_db()
 @app.route('/')
 def index():
     if 'username' in session:
+        if session['username'] == 'admin':
+            return render_template('indexAdmin.html',usuario=session['username'])
         return render_template('index.html',usuario=session['username'])
     return render_template('index.html',usuario='Nao logado')
 

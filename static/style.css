@@ -91,3 +91,21 @@ body{
     border: #fff712 solid 1px;
     border-radius: 10px;
 }
+
+.pesquisa{
+    display: flex;
+    height: 50px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+.pesquisa input{
+    background-color: #000;
+    color: #fff;
+    border: #fff 2px solid;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 2em;
+    padding: 10px;
+}

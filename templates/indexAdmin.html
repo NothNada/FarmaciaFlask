@@ -10,7 +10,12 @@
     <div class="topo">
         <button id="logout" style="display: none; visibility: hidden;">LogOut</button>
         <button id="login" style="display: none; visibility: hidden;">Login</button>
+        <button id="edit" style="display: none; visibility: hidden;">Edit</button>
         <h1>Logado como {{usuario}}</h1>
+    </div>
+
+    <div class="pesquisa">
+        <input type="text" placeholder="Pesquise algum produto" oninput="pesquisa(this.value)">
     </div>
 
     <div class="prod">
@@ -20,6 +25,16 @@
     
     <script>
         const divProd = document.querySelector(".prod");
+        var d = null;
+
+        if('{{usuario}}' == 'admin'){
+            let btn = document.getElementById("edit");
+            btn.style.visibility = 'visible';
+            btn.style.display = 'flex';
+            btn.addEventListener('click',()=>{
+                window.location.href = 'edit'
+            });
+        }
 
         if('{{usuario}}'.toLocaleLowerCase() == 'nao logado'){
             let btn = document.getElementById("login");
@@ -41,6 +56,7 @@
 
         fetch('/prods/').then(response => response.json())
         .then(data => {
+            d = data;
             var texto = '';
             for (let i = 0; i < data.qnts; i++) {
                 texto += "<div class='item'>";
@@ -56,6 +72,23 @@
             divProd.innerHTML = texto;
         });
 
+        function pesquisa(e){
+            let texto = "";
+            for(let i=0;i<d.qnts;i++){
+                if(d.descricao[i].toLowerCase().match(e.toLowerCase())){
+                    texto += "<div class='item'>";
+                    texto += "<img src='/static/imgs/" + d.imagem[i] + "'/>";
+                    texto += "<p>";
+                    texto += d.descricao[i];
+                    texto += "</p>";
+                    texto += "<h1>R$ ";
+                    texto += d.valor[i];
+                    texto += "</h1>";
+                    texto += "</div>";
+                }
+            }
+            divProd.innerHTML = texto;
+        }
 
     </script>
 </body>
